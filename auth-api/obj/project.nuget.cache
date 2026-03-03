@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CCGFCfTndwU=",
+  "dgSpecHash": "j8reKAnyNT4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jhirz\\Desktop\\PF_Project\\PF_Project\\auth-api\\auth-api.csproj",
+  "projectFilePath": "C:\\Users\\Jhirz\\Documents\\GitHub\\PF_Project_4P1W-XRJ\\auth-api\\auth-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jhirz\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Jhirz\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
