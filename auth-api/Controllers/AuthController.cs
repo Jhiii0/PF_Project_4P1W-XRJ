@@ -4,6 +4,7 @@ using auth_api.Models;
 using auth_api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace auth_api.Controllers;
 
@@ -60,5 +61,22 @@ public class AuthController : ControllerBase
 
         var token = _tokenService.GenerateToken(user);
         return Ok(new AuthResponse(token, user.Email, user.Role));
+    }
+
+    [HttpGet("me")]
+    [Microsoft.AspNetCore.Authorization.Authorize]
+    public async Task<IActionResult> GetMe()
+    {
+        var email = User.FindFirstValue(ClaimTypes.Email) 
+            ?? User.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Email);
+
+        if (string.IsNullOrEmpty(email))
+            return Unauthorized(new { error = "Invalid token claims." });
+
+        var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
+        if (user == null)
+            return NotFound(new { error = "User not found." });
+
+        return Ok(new { user.Id, user.Email, user.Role });
     }
 }

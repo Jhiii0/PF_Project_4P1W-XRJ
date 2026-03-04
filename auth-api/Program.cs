@@ -18,8 +18,9 @@ builder.Services.AddCors(options =>
 });
 
 // Database
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // JWT Auth
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
